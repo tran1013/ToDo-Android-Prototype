@@ -23,12 +23,12 @@ public class MainActivity extends AppCompatActivity {
         host.setup();
 
         TabHost.TabSpec spec = host.newTabSpec("Tab1");
-        spec.setContent(R.id.tab1);
+        spec.setContent(new Intent(this, ToDoListActivity.class));
         spec.setIndicator("To-Do's");
         host.addTab(spec);
 
         spec = host.newTabSpec("Tab2");
-        spec.setContent(R.id.tab2);
+        spec.setContent(new Intent(this, StatisticsActivity.class));
         spec.setIndicator("Statistics");
         host.addTab(spec);
     }
