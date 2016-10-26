@@ -1,14 +1,11 @@
 package com.example.duc.todoapp;
 
 
-import android.os.PersistableBundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 
 
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
@@ -18,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private ViewPager viewPager;
 
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -27,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("Tab1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab2"));
+        tabLayout.addTab(tabLayout.newTab().setText("To-Dos"));
+        tabLayout.addTab(tabLayout.newTab().setText("Statistics"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -37,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         viewPager.setAdapter(adapter);
 
-        tabLayout.addOnTabSelectedListener(this);
+        tabLayout.setOnTabSelectedListener(this);
     }
 
     @Override
