@@ -1,8 +1,11 @@
-package com.example.duc.todoapp;
+package com.example.duc.todoapp.Service;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.example.duc.todoapp.Fragment.StatisticsFragment;
+import com.example.duc.todoapp.Fragment.ToDoListFragment;
 
 /**
  * Created by Duc on 26/10/16.
