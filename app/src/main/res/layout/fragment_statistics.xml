@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <view
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        class="com.github.mikephil.charting.charts.PieChart"
+        android:id="@+id/view"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Undone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="21dp"
+        android:id="@+id/undoneTextView"
+        android:layout_below="@+id/view"
+        android:layout_alignEnd="@+id/view"
+        android:layout_marginTop="13dp" />
+
+    <TextView
+        android:text="-----------------"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/undoneTextView"
+        android:layout_alignStart="@+id/undoneTextView"
+        android:id="@+id/undoneUnderline" />
+
+    <TextView
+        android:text="70%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/undoneUnderline"
+        android:layout_alignStart="@+id/undoneUnderline"
+        android:id="@+id/undonePercTextView" />
+
+    <TextView
+        android:text="Done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="66dp"
+        android:id="@+id/textView11"
+        android:layout_above="@+id/view"
+        android:layout_alignStart="@+id/view" />
+
+    <TextView
+        android:text="-----------------"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/doneUnderline"
+        android:layout_marginTop="16dp"
+        android:layout_alignTop="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
+
+    <TextView
+        android:text="30%"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/donePercTextView"
+        android:layout_below="@+id/doneUnderline"
+        android:layout_alignStart="@+id/doneUnderline" />
+
+</RelativeLayout>

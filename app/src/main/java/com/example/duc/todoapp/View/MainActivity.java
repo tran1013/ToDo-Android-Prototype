@@ -1,11 +1,11 @@
 package com.example.duc.todoapp.View;
 
 
+import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.example.duc.todoapp.Service.Pager;
 import com.example.duc.todoapp.R;
@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
@@ -36,12 +34,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
 
         viewPager.setAdapter(adapter);
-
-        tabLayout.setOnTabSelectedListener(this);
+        tabLayout.addOnTabSelectedListener(this);
     }
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
+
         viewPager.setCurrentItem(tab.getPosition());
     }
 
