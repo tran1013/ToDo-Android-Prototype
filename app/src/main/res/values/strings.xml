@@ -6,4 +6,5 @@
     <string name="alertBoxDelete">Delete this item?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="inputEmpty">No input, no output!</string>
 </resources>
