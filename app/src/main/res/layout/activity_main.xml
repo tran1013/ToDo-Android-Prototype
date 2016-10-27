@@ -20,6 +20,8 @@
         android:layout_height="40dp"
         android:background="#9E9E9E"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:tabIndicatorColor="@android:color/white" />
+        app:tabIndicatorColor="@android:color/white"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"/>
+
 
 </LinearLayout>

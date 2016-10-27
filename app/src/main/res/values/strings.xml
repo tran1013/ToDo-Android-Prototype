@@ -3,4 +3,7 @@
     <string name="app_header">Things need to be done!</string>
     <string name="buttonText">Add To-Do</string>
     <string name="editTextHint">Type something in...</string>
+    <string name="alertBoxDelete">Delete this item?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

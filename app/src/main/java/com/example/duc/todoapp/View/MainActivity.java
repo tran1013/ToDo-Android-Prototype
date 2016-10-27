@@ -1,7 +1,5 @@
 package com.example.duc.todoapp.View;
 
-
-import android.graphics.Color;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("To-Dos"));
+        tabLayout.addTab(tabLayout.newTab().setText("To-Do's"));
         tabLayout.addTab(tabLayout.newTab().setText("Statistics"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
