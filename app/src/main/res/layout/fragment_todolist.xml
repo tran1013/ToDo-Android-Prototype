@@ -45,5 +45,6 @@
         android:layout_alignEnd="@+id/addBtn"
         android:layout_below="@+id/addBtn"
         android:layout_height="match_parent"
-        android:id="@+id/toDoListView" />
+        android:id="@+id/toDoListView"
+        android:choiceMode="multipleChoice"/>
 </RelativeLayout>

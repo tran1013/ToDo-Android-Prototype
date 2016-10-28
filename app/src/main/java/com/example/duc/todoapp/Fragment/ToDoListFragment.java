@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +18,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.duc.todoapp.Mock.Mockdata;
+import com.example.duc.todoapp.Model.ToDoItem;
 import com.example.duc.todoapp.R;
-import com.example.duc.todoapp.View.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,12 +31,22 @@ import java.util.Arrays;
 
 public class ToDoListFragment extends Fragment {
 
+    //ArrayList<ToDoItem> values = (new Mockdata()).getItems();
+
     ArrayList<String> values = new ArrayList<String>(Arrays.asList("Buy the new MacBook Pro", "meet Mr. Parker", "Explain math to sis", "Buy some chips", "Wash my car"
     ));
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        final ArrayList<ToDoItem> values = (new Mockdata()).getItems();
+//        ArrayList<String> items = new ArrayList<>();
+//
+//        for(ToDoItem item : values){
+//            items.add(item.getItem());
+//        }
+
+
         View view = inflater.inflate(R.layout.fragment_todolist, container, false);
 
         final ArrayAdapter<String> myAdapter = new ArrayAdapter<>(getContext().getApplicationContext(), R.layout.listrow, values);
@@ -42,7 +54,7 @@ public class ToDoListFragment extends Fragment {
         final EditText inputText = (EditText) view.findViewById(R.id.inputText);
         Button addBtn = (Button) view.findViewById(R.id.addBtn);
 
-        ListView listView = (ListView) view.findViewById(R.id.toDoListView);
+        final ListView listView = (ListView) view.findViewById(R.id.toDoListView);
 
         listView.setAdapter(myAdapter);
 
@@ -78,16 +90,29 @@ public class ToDoListFragment extends Fragment {
             public void onClick(View v) {
                 dismissKeyboard();
                 if (inputText.getText().toString().isEmpty()) {
-                    Toast.makeText(getContext().getApplicationContext(), getString(R.string.inputEmpty), Toast.LENGTH_LONG).show();
+                    Toast toast = Toast.makeText(getContext().getApplicationContext(), getString(R.string.inputEmpty), Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL, 0, 0);
+                    toast.show();
                 } else {
                     values.add(inputText.getText().toString());
+                    //values.add(new ToDoItem(inputText.getText().toString(), false));
                     myAdapter.notifyDataSetChanged();
                     inputText.getText().clear();
                 }
             }
         });
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                System.out.println("CLICK");
+                //TODO: Mark todos as false or true
+
+            }
+        });
+
         return view;
+
     }
 
     public void dismissKeyboard() {

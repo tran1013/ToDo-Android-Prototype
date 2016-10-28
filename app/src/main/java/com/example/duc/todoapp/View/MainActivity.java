@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-
         viewPager.setCurrentItem(tab.getPosition());
     }
 

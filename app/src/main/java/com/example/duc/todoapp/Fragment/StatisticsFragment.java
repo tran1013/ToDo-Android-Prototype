@@ -31,16 +31,14 @@ public class StatisticsFragment extends Fragment {
         PieChart chart = (PieChart) view.findViewById(R.id.pieChartView);
 
         ArrayList<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(30, 0));
-        entries.add(new Entry(70, 1));
-
+        entries.add(new Entry(10, 0));
+        entries.add(new Entry(90, 1));
 
         PieDataSet dataset = new PieDataSet(entries, "");
 
         ArrayList<String> labels = new ArrayList<String>();
         labels.add("Done");
         labels.add("Undone");
-
 
         PieData data = new PieData(labels, dataset);
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
@@ -55,12 +53,11 @@ public class StatisticsFragment extends Fragment {
         return view;
     }
 
-    public void setLabels(View view, ArrayList<Entry> entries)
-    {
+    public void setLabels(View view, ArrayList<Entry> entries) {
         TextView doneLabel = (TextView) view.findViewById(R.id.donePercTextView);
-        doneLabel.setText("blabla");
+        doneLabel.setText(Float.toString(entries.get(0).getVal()) + "%");
 
         TextView undoneLabel = (TextView) view.findViewById(R.id.undonePercTextView);
-        undoneLabel.setText("huhu");
+        undoneLabel.setText(Float.toString(entries.get(1).getVal()) + "%");
     }
 }
