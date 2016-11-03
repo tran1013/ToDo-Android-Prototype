@@ -5,12 +5,14 @@ package com.example.duc.todoapp.Model;
  */
 
 public class ToDoItem {
+
+
     private String item;
     private Boolean isDone;
 
     public ToDoItem(String item, Boolean isDone) {
         this.item = item;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     public String getItem() {
@@ -27,5 +29,10 @@ public class ToDoItem {
 
     public void setDone(Boolean done) {
         isDone = done;
+    }
+
+    @Override
+    public String toString() {
+        return item;
     }
 }

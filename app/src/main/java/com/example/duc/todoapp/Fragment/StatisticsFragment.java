@@ -23,6 +23,8 @@ import java.util.ArrayList;
 
 public class StatisticsFragment extends Fragment {
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

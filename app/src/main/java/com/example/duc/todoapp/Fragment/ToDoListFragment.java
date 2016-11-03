@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -23,7 +24,6 @@ import com.example.duc.todoapp.Model.ToDoItem;
 import com.example.duc.todoapp.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Created by Duc on 19/10/16.
@@ -31,25 +31,18 @@ import java.util.Arrays;
 
 public class ToDoListFragment extends Fragment {
 
-    //ArrayList<ToDoItem> values = (new Mockdata()).getItems();
 
-    ArrayList<String> values = new ArrayList<String>(Arrays.asList("Buy the new MacBook Pro", "meet Mr. Parker", "Explain math to sis", "Buy some chips", "Wash my car"
-    ));
+    Mockdata values = new Mockdata();
+    ArrayList<ToDoItem> items = values.getItems();
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        final ArrayList<ToDoItem> values = (new Mockdata()).getItems();
-//        ArrayList<String> items = new ArrayList<>();
-//
-//        for(ToDoItem item : values){
-//            items.add(item.getItem());
-//        }
-
 
         View view = inflater.inflate(R.layout.fragment_todolist, container, false);
 
-        final ArrayAdapter<String> myAdapter = new ArrayAdapter<>(getContext().getApplicationContext(), R.layout.listrow, values);
+        final ArrayAdapter<ToDoItem> myAdapter = new ArrayAdapter<>(getContext().getApplicationContext(), R.layout.listrow, items);
 
         final EditText inputText = (EditText) view.findViewById(R.id.inputText);
         Button addBtn = (Button) view.findViewById(R.id.addBtn);
@@ -57,6 +50,7 @@ public class ToDoListFragment extends Fragment {
         final ListView listView = (ListView) view.findViewById(R.id.toDoListView);
 
         listView.setAdapter(myAdapter);
+
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -68,9 +62,13 @@ public class ToDoListFragment extends Fragment {
 
                 builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        values.remove(position);
+                        myAdapter.remove(items.get(position));
+                        listView.setAdapter(myAdapter);
+                        setMarked(listView);
                         myAdapter.notifyDataSetChanged();
                         dialog.dismiss();
+                        System.out.println("LONG");
+                        getItems();
                     }
                 });
 
@@ -82,7 +80,20 @@ public class ToDoListFragment extends Fragment {
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
-                return false;
+                return true;
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (items.get(i).getDone().equals(false)) {
+                    items.get(i).setDone(true);
+                } else {
+                    items.get(i).setDone(false);
+                }
+                System.out.println("CLICK");
+                getItems();
             }
         });
 
@@ -94,20 +105,11 @@ public class ToDoListFragment extends Fragment {
                     toast.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_HORIZONTAL, 0, 0);
                     toast.show();
                 } else {
-                    values.add(inputText.getText().toString());
-                    //values.add(new ToDoItem(inputText.getText().toString(), false));
+                    //items.add(new ToDoItem(inputText.getText().toString(), false));
+                    myAdapter.add(new ToDoItem(inputText.getText().toString(), false));
                     myAdapter.notifyDataSetChanged();
                     inputText.getText().clear();
                 }
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("CLICK");
-                //TODO: Mark todos as false or true
-
             }
         });
 
@@ -116,10 +118,23 @@ public class ToDoListFragment extends Fragment {
     }
 
     public void dismissKeyboard() {
-        InputMethodManager inputManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+    }
 
-        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
-                InputMethodManager.HIDE_NOT_ALWAYS);
+    public void getItems() {
+        for (ToDoItem item : items) {
+            System.out.println("ITEM: " + item.getItem() + " " + item.getDone());
+        }
+    }
+
+    public void setMarked(ListView listView)
+    {
+        for(int i = 0; i < items.size(); i++)
+        {
+            if(items.get(i).getDone().equals(true))
+            listView.setItemChecked(i, true);
+        }
     }
 
 }

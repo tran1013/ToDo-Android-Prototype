@@ -6,7 +6,6 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:textSize="14sp"
     android:gravity="center_vertical"
-    android:checkMark="?android:attr/listChoiceIndicatorMultiple"
-    android:checked="false"
+    android:checkMark="?android:attr/listChoiceIndicatorSingle"
     android:textColor="#000000"
     />
