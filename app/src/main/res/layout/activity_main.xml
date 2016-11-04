@@ -18,9 +18,9 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#00B8D4"
+        android:background="@color/colorPrimaryDark"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:tabIndicatorColor="@android:color/white"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"/>
 
 

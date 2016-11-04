@@ -7,4 +7,6 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="inputEmpty">No input, no output!</string>
+    <string name="done">Done</string>
+    <string name="undone">Undone</string>
 </resources>

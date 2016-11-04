@@ -13,6 +13,16 @@ import com.example.duc.todoapp.Fragment.ToDoListFragment;
 
 public class Pager extends FragmentStatePagerAdapter {
 
+    private StatisticsFragment statisticsFragment;
+
+    public StatisticsFragment getStatisticsFragment() {
+        return statisticsFragment;
+    }
+
+    public void setStatisticsFragment(StatisticsFragment statisticsFragment) {
+        this.statisticsFragment = statisticsFragment;
+    }
+
     //integer to count number of tabs
     int tabCount;
 
@@ -32,8 +42,9 @@ public class Pager extends FragmentStatePagerAdapter {
                 ToDoListFragment tab1 = new ToDoListFragment();
                 return tab1;
             case 1:
-                StatisticsFragment tab2 = new StatisticsFragment();
-                return tab2;
+                //StatisticsFragment tab2 = new StatisticsFragment();
+                statisticsFragment = new StatisticsFragment();
+                return statisticsFragment;
             default:
                 return null;
         }

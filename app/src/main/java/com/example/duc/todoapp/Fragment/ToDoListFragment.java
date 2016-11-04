@@ -14,16 +14,19 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.duc.todoapp.Mock.Mockdata;
+import com.example.duc.todoapp.Model.ItemSingleton;
 import com.example.duc.todoapp.Model.ToDoItem;
 import com.example.duc.todoapp.R;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+
 
 /**
  * Created by Duc on 19/10/16.
@@ -31,10 +34,8 @@ import java.util.ArrayList;
 
 public class ToDoListFragment extends Fragment {
 
-
     Mockdata values = new Mockdata();
     ArrayList<ToDoItem> items = values.getItems();
-
 
     @Nullable
     @Override
@@ -68,7 +69,7 @@ public class ToDoListFragment extends Fragment {
                         myAdapter.notifyDataSetChanged();
                         dialog.dismiss();
                         System.out.println("LONG");
-                        getItems();
+                        //getItems();
                     }
                 });
 
@@ -80,6 +81,7 @@ public class ToDoListFragment extends Fragment {
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
+                calculatePercentage();
                 return true;
             }
         });
@@ -92,8 +94,7 @@ public class ToDoListFragment extends Fragment {
                 } else {
                     items.get(i).setDone(false);
                 }
-                System.out.println("CLICK");
-                getItems();
+                calculatePercentage();
             }
         });
 
@@ -110,9 +111,11 @@ public class ToDoListFragment extends Fragment {
                     myAdapter.notifyDataSetChanged();
                     inputText.getText().clear();
                 }
+                calculatePercentage();
             }
         });
 
+        calculatePercentage();
         return view;
 
     }
@@ -122,19 +125,35 @@ public class ToDoListFragment extends Fragment {
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
     }
 
-    public void getItems() {
-        for (ToDoItem item : items) {
-            System.out.println("ITEM: " + item.getItem() + " " + item.getDone());
+    public void setMarked(ListView listView) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getDone().equals(true))
+                listView.setItemChecked(i, true);
         }
     }
 
-    public void setMarked(ListView listView)
-    {
-        for(int i = 0; i < items.size(); i++)
-        {
-            if(items.get(i).getDone().equals(true))
-            listView.setItemChecked(i, true);
+    public void calculatePercentage() {
+
+        ItemSingleton object = ItemSingleton.getInstance();
+        NumberFormat formater = new DecimalFormat("#0.00");
+
+        Double done = 0.0;
+        Double undone = 0.0;
+
+        if (items.size() > 0) {
+            for (int i = 0; i < items.size(); i++) {
+                if (items.get(i).getDone().equals(true))
+                    done += 1.0;
+
+            }
+
+            formater.format(done = (done / items.size()) * 100);
+            formater.format(undone = 100 - done);
+            object.setDone(done);
+            object.setUndone(undone);
         }
+        System.out.println("DONE: " + done + " / UNDONE: " + undone);
+        System.out.println("OBJECT: " + " DONE: " + object.getDone() + " UNDONE: " + object.getUndone());
     }
 
 }
