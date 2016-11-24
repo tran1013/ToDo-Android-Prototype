@@ -3,11 +3,9 @@ package com.example.duc.todoapp.Fragment;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.duc.todoapp.Model.ItemSingleton;
@@ -20,7 +18,6 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 
-import static android.R.attr.entries;
 import static com.example.duc.todoapp.Model.ItemSingleton.object;
 
 /**
@@ -48,6 +45,9 @@ public class StatisticsFragment extends Fragment {
         return view;
     }
 
+    /**
+     *
+     * */
     public void setLabels(View view, ArrayList<Entry> entries) {
 
         TextView doneLabel = (TextView) view.findViewById(R.id.donePercTextView);
@@ -65,7 +65,12 @@ public class StatisticsFragment extends Fragment {
         labels.add(getString(R.string.done));
         labels.add(getString(R.string.undone));
 
+        if ((entries.get(0).getVal() == 0.0)) {
+            labels.set(0, "");
+        }
+        
         PieData data = new PieData(labels, dataset);
+
         dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
         chart.setDescription("");
         chart.setData(data);
