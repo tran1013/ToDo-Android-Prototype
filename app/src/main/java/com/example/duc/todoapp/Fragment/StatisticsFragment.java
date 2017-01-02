@@ -30,6 +30,13 @@ public class StatisticsFragment extends Fragment {
     PieChart chart;
     final ArrayList<Entry> entries = new ArrayList<>();
 
+    /**
+     * Initialize statistics view
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return view
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,8 +53,10 @@ public class StatisticsFragment extends Fragment {
     }
 
     /**
-     *
-     * */
+     * Set the done and undone labels and update them
+     * @param view
+     * @param entries
+     */
     public void setLabels(View view, ArrayList<Entry> entries) {
 
         TextView doneLabel = (TextView) view.findViewById(R.id.donePercTextView);
@@ -57,6 +66,12 @@ public class StatisticsFragment extends Fragment {
         undoneLabel.setText(String.format("%.1f", entries.get(1).getVal()) + "%");
     }
 
+
+    /**
+     * Set the chart and prepare it for statistic view
+     * @param chart
+     * @param entries
+     */
     public void setChart(PieChart chart, ArrayList<Entry> entries) {
 
         PieDataSet dataset = new PieDataSet(entries, "");
@@ -71,7 +86,7 @@ public class StatisticsFragment extends Fragment {
         
         PieData data = new PieData(labels, dataset);
 
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS); //
+        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
         chart.setDescription("");
         chart.setData(data);
         data.setDrawValues(false);
@@ -79,6 +94,9 @@ public class StatisticsFragment extends Fragment {
         chart.animate();
     }
 
+    /**
+     * Clear the array with entries and chart. Refresh the whole view
+     */
     public void refresh() {
         entries.clear();
         chart.clear();
@@ -89,6 +107,9 @@ public class StatisticsFragment extends Fragment {
         setLabels(view, entries);
     }
 
+    /**
+     * This method will be called, if the statistics view was called and displayed before.
+     */
     @Override
     public void onResume() {
         super.onResume();

@@ -4,6 +4,9 @@ package com.example.duc.todoapp.Model;
  * Created by duc on 28.10.16.
  */
 
+/**
+ * To-Do object
+ */
 public class ToDoItem {
 
 

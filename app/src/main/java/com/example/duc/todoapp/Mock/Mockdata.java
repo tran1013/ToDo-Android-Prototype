@@ -13,8 +13,9 @@ import java.util.Arrays;
 public class Mockdata {
 
 
-    //ArrayList<String> values = new ArrayList<String>(Arrays.asList("Buy the new MacBook Pro", "meet Mr. Parker", "Explain math to sis", "Buy some chips", "Wash my car"
-    //));
+    /**
+     * Mocklist to fill the tasklist if application starts
+     */
     ArrayList<ToDoItem> items = new ArrayList<>(Arrays.asList(new ToDoItem("Buy the new MacBook Pro", false), new ToDoItem("meet Mr. Parker", false),
             new ToDoItem("Explain math to sis", false), new ToDoItem("Buy some chips", false), new ToDoItem("Wash my car", false)));
 

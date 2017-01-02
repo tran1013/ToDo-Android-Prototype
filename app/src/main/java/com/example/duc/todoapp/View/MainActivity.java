@@ -1,22 +1,16 @@
 package com.example.duc.todoapp.View;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Context;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
-import android.view.inputmethod.InputMethodManager;
 
-import com.example.duc.todoapp.Fragment.StatisticsFragment;
 import com.example.duc.todoapp.Service.Pager;
 import com.example.duc.todoapp.R;
 
-
+/**
+ * Main Class of the application
+ */
 public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
 
     private TabLayout tabLayout;
@@ -25,6 +19,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
     private Pager adapter;
 
+    /**
+     * Initialize the views
+     * @param savedInstanceState
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +31,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
 
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
-        tabLayout.addTab(tabLayout.newTab().setText("To-Do's"));
-        tabLayout.addTab(tabLayout.newTab().setText("Statistics"));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.ToDo)));
+        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.Statistics)));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -45,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout.addOnTabSelectedListener(this);
     }
 
+    /**
+     * Set the correct tab by clicking on a tab on the ui
+     * @param tab
+     */
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
         viewPager.setCurrentItem(tab.getPosition(), true);

@@ -4,6 +4,9 @@ package com.example.duc.todoapp.Model;
  * Created by duc on 04.11.16.
  */
 
+/**
+ * Singleton object which keeps the percentage of the done and undone tasks
+ */
 public class ItemSingleton {
     public static final ItemSingleton object = new ItemSingleton();
 

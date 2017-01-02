@@ -9,4 +9,6 @@
     <string name="inputEmpty">No input, no output!</string>
     <string name="done">Done</string>
     <string name="undone">Undone</string>
+    <string name="ToDo">To-Do\'s</string>
+    <string name="Statistics">Statistics</string>
 </resources>

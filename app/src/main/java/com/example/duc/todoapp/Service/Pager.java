@@ -11,6 +11,9 @@ import com.example.duc.todoapp.Fragment.ToDoListFragment;
  * Created by Duc on 26/10/16.
  */
 
+/**
+ * Handles the tabs to get the right one which the user request
+ */
 public class Pager extends FragmentStatePagerAdapter {
 
     private StatisticsFragment statisticsFragment;
@@ -50,7 +53,7 @@ public class Pager extends FragmentStatePagerAdapter {
         }
     }
 
-    //Overriden method getCount to get the number of tabs
+    //Override method getCount to get the number of tabs
     @Override
     public int getCount() {
         return tabCount;

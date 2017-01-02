@@ -37,6 +37,13 @@ public class ToDoListFragment extends Fragment {
     Mockdata values = new Mockdata();
     ArrayList<ToDoItem> items = values.getItems();
 
+    /**
+     * Initialize to do view
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return
+     */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -120,6 +127,9 @@ public class ToDoListFragment extends Fragment {
 
     }
 
+    /**
+     * Disable keyboard if the user is tapping outside the inputfield
+     */
     public void dismissKeyboard() {
         final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
@@ -132,6 +142,9 @@ public class ToDoListFragment extends Fragment {
         }
     }
 
+    /**
+     * Calculate the percentage of done and undone tasks
+     */
     public void calculatePercentage() {
 
         ItemSingleton object = ItemSingleton.getInstance();
