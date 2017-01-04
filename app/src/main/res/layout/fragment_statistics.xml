@@ -62,4 +62,14 @@
         android:layout_below="@+id/doneUnderline"
         android:layout_alignStart="@+id/doneUnderline" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:id="@+id/freetimeLabel"
+        android:layout_alignStart="@+id/pieChartView"
+        android:layout_alignEnd="@+id/pieChartView"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
 </RelativeLayout>

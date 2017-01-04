@@ -32,6 +32,7 @@ public class StatisticsFragment extends Fragment {
 
     /**
      * Initialize statistics view
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -43,7 +44,7 @@ public class StatisticsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_statistics, container, false);
         chart = (PieChart) view.findViewById(R.id.pieChartView);
         final ItemSingleton object = ItemSingleton.getInstance();
-
+        chart.setNoDataText("");
         entries.add(new Entry(object.getDone().floatValue(), 0));
         entries.add(new Entry(object.getUndone().floatValue(), 1));
 
@@ -54,6 +55,7 @@ public class StatisticsFragment extends Fragment {
 
     /**
      * Set the done and undone labels and update them
+     *
      * @param view
      * @param entries
      */
@@ -69,29 +71,38 @@ public class StatisticsFragment extends Fragment {
 
     /**
      * Set the chart and prepare it for statistic view
+     *
      * @param chart
      * @param entries
      */
     public void setChart(PieChart chart, ArrayList<Entry> entries) {
-
+        TextView freetimeLabel = (TextView) view.findViewById(R.id.freetimeLabel);
+        freetimeLabel.setText("");
         PieDataSet dataset = new PieDataSet(entries, "");
 
         ArrayList<String> labels = new ArrayList<>();
         labels.add(getString(R.string.done));
         labels.add(getString(R.string.undone));
 
-        if ((entries.get(0).getVal() == 0.0)) {
-            labels.set(0, "");
-        }
-        
-        PieData data = new PieData(labels, dataset);
+        if (entries.get(0).getVal() == 0.0 && entries.get(1).getVal() == 0.0) {
+            freetimeLabel.setText("Congratulations! Nothing to do!");
+        } else {
 
-        dataset.setColors(ColorTemplate.COLORFUL_COLORS);
-        chart.setDescription("");
-        chart.setData(data);
-        data.setDrawValues(false);
-        chart.getLegend().setEnabled(false);
-        chart.animate();
+            if ((entries.get(0).getVal() == 0.0)) {
+                labels.set(0, "");
+            } else if ((entries.get(1).getVal() == 0.0)) {
+                labels.set(1, "");
+            }
+
+            PieData data = new PieData(labels, dataset);
+
+            dataset.setColors(ColorTemplate.COLORFUL_COLORS);
+            chart.setDescription("");
+            chart.setData(data);
+            data.setDrawValues(false);
+            chart.getLegend().setEnabled(false);
+            chart.animate();
+        }
     }
 
     /**

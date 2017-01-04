@@ -10,8 +10,8 @@ package com.example.duc.todoapp.Model;
 public class ItemSingleton {
     public static final ItemSingleton object = new ItemSingleton();
 
-    Double done;
-    Double undone;
+    Double done = 0.0;
+    Double undone = 0.0;
 
     public void setDone(Double done) {
         this.done = done;

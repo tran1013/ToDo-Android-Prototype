@@ -39,6 +39,7 @@ public class ToDoListFragment extends Fragment {
 
     /**
      * Initialize to do view
+     *
      * @param inflater
      * @param container
      * @param savedInstanceState
@@ -77,12 +78,15 @@ public class ToDoListFragment extends Fragment {
                         dialog.dismiss();
                         System.out.println("LONG");
                         //getItems();
+                        calculatePercentage();
                     }
                 });
 
                 builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
+                        calculatePercentage();
+
                     }
                 });
 
@@ -152,7 +156,7 @@ public class ToDoListFragment extends Fragment {
 
         Double done = 0.0;
         Double undone = 0.0;
-
+        System.out.println("ITEMS: " + items.size());
         if (items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
                 if (items.get(i).getDone().equals(true))
@@ -162,6 +166,9 @@ public class ToDoListFragment extends Fragment {
 
             formater.format(done = (done / items.size()) * 100);
             formater.format(undone = 100 - done);
+            object.setDone(done);
+            object.setUndone(undone);
+        } else {
             object.setDone(done);
             object.setUndone(undone);
         }
